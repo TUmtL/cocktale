@@ -48,9 +48,6 @@ export default {
       console.log(coocked)
     }
   },
-  created(){
-    this.moovies()
-  }
 }
 
 </script>
@@ -92,7 +89,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   max-width: 600px;
-  max-height: 387;
+  max-height: 387px;
   overflow: auto;
   justify-content: space-between;
 }

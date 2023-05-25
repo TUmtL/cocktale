@@ -47,14 +47,13 @@ export default {
 
 .main {
   width: 100vw;
-  height: 100vh;
+  min-height: 100%;
   display: flex;
   background: #141414;
 }
 
 .main__left {
   width: 50%;
-  height: 100%;
   background-image: imageURL;
   background: center no-repeat;
   background-size: cover;
