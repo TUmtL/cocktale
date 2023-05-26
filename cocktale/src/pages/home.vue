@@ -10,18 +10,22 @@
           </router-link>
         </div>
         <div class="cocktale__card hiden__card">
-
         </div>
 
       </el-scrollbar>
     </div>
     <div v-else class="info">
       <h1 class="info__title">Choose your drink</h1>
-      <el-select class="m-2" placeholder="Choose main ingredient " size="large" v-model="cocktaleStore.ingridient" @change="cocktaleStore.findeCocktale()">
+      <el-select class="m-2" placeholder="Choose main ingredient " size="large" v-model="cocktaleStore.ingridient"
+        @change="cocktaleStore.findeCocktale()">
         <el-option v-for="cocktale of cocktaleStore.ingridients" :key="cocktale" :value="cocktale.strIngredient1">
           {{ cocktale.strIngredient1 }}
         </el-option>
       </el-select>
+      <p class="info__text">Try our delicious cocktail recipes for every occasion. Find delicious cocktail recipes by
+        ingredient through our cocktail generator.
+      </p>
+      <img src="../assets/img/homeCocktales.png" alt="cocktales" class="info__img">
     </div>
   </applayout>
 </template>
@@ -41,7 +45,7 @@ export default {
   components: {
     applayout
   },
-  methods:{
+  methods: {
     async moovies() {
       const raw = await fetch('https://api.tvmaze.com/search/shows?q=mouse')
       const coocked = await raw.json()
@@ -114,6 +118,24 @@ export default {
   max-width: 120px;
 }
 
+.info__text {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 36px;
+  text-align: center;
+  letter-spacing: 0.1em;
+  margin-bottom: 60px;
+  color: #D3D3D3;
+  max-width: 516px;
+}
+.el-select.el-select--large.m-2 {
+  margin-bottom: 50px;
+}
+.info__img {
+  max-width: 345px;
+}
 .cocktale__name {
   font-family: 'Raleway';
   font-style: normal;
@@ -123,19 +145,24 @@ export default {
   color: #FFFFFF;
 
 }
+
 .el-input__wrapper {
   background: #141414;
 }
-.el-select-dropdown__wrap.el-scrollbar__wrap.el-scrollbar__wrap--hidden-default .el-scrollbar__view{
+
+.el-select-dropdown__wrap.el-scrollbar__wrap.el-scrollbar__wrap--hidden-default .el-scrollbar__view {
   display: block;
 }
+
 .el-scrollbar__wrap .el-scrollbar__wrap--hidden-default {
   max-height: 400px;
 }
+
 .el-scrollbar__wrap.el-scrollbar__wrap--hidden-default .el-scrollbar__view {
   display: flex;
   flex-wrap: wrap;
 }
+
 .hiden__card {
   height: 0.1px;
 }
