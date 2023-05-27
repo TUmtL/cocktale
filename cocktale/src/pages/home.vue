@@ -99,7 +99,7 @@ export default {
 }
 
 .cocktale__card {
-  flex-basis: calc((100% - 194px) / 2);
+  flex-basis: 151px;
   flex-grow: 0;
   flex-shrink: 1;
   display: flex;
@@ -110,7 +110,7 @@ export default {
 }
 
 .cocktale__card:not(:nth-child(3n)) {
-  margin-right: 22px;
+  margin-right: 38px;
 }
 
 .cocktale__img {
@@ -130,12 +130,15 @@ export default {
   color: #D3D3D3;
   max-width: 516px;
 }
+
 .el-select.el-select--large.m-2 {
   margin-bottom: 50px;
 }
+
 .info__img {
   max-width: 345px;
 }
+
 .cocktale__name {
   font-family: 'Raleway';
   font-style: normal;
@@ -161,9 +164,18 @@ export default {
 .el-scrollbar__wrap.el-scrollbar__wrap--hidden-default .el-scrollbar__view {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .hiden__card {
   height: 0.1px;
 }
-</style>
+
+@media (max-width: 1280px) {
+  .cocktale__card {
+    flex-basis: 120px;
+  }
+  .cocktale__card:not(:nth-child(3n)) {
+  margin-right: 18px;
+}
+}</style>
