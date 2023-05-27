@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="test.css">
+</head>
+
+<body>
+
+  <div id="app">
+    <input type="text" v-model="text">
+    <input type="file" @change="takeImg()">
+    <button @click="puss">da</button>
+    <div class="place">
+      <div class="grid" v-for="grid of grids">
+        <img :src="previewFilePath" style="height: 200px;" alt="">
+        {{grid.text}}
+      </div>
+    </div>
+    <a :[thata]="href">asdad</a>
+    {{nums}}
+    <button @click="nums++">+</button>
+    <button @click="nums--">-</button>
+    <div>{{thates}}</div>
+    <button v-for="(page , pageI) of pages" @click="curentPage = pageI + 1 "> {{pageI + 1}}</button>
+
+    <div v-show="curentPage === 1">page = 1</div>
+    <div v-show="curentPage === 2">page = 2</div>
+    <div v-show="curentPage === 3">page = 3</div>
+    <div v-show="curentPage === 4">page = 4</div>
+    <div v-show="curentPage === 5">page = 5</div>
+    <div v-show="curentPage === 6">page = 6</div>
+    <div v-show="curentPage === 7">page = 7</div>
+    {{curentPage}}
+    <label>1<input v-model="machektest" type="radio" true-value="da" false-value="net" name="machek" value="am bad"></label>
+    <label>2<input v-model="machektest" type="radio" true-value="da" false-value="net" name="machek" value="he bad"></label>
+    <label>3<input v-model="machektest" type="radio" true-value="da" false-value="net" name="machek" value="she bad"></label>
+    <label>4<input v-model="machektest" type="radio" true-value="da" false-value="net" name="machek" value="am good"></label>
+    <label>5<input v-model="machektest" type="radio" true-value="da" false-value="net" name="machek" value="he good"></label>
+    <label>6<input v-model="machektest" type="radio" true-value="da" false-value="net" name="machek" value="she good"></label>
+    {{machektest}}
+
+  </div>
+  <script src="vue.js"></script>  
+  <script type="module" src="app.js"></script>
+</body>
+
+</html>

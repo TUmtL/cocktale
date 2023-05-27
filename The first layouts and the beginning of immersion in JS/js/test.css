@@ -1,0 +1,44 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+picture {
+  display: flex;
+}
+ul {
+  list-style: none;
+}
+#app {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 710px;
+  margin: 0 auto;
+}
+.red {
+  background-color: red;
+  color: gold;
+}
+.blue {
+  background-color: blue;
+  color: #fff;
+}
+.prety__list {
+  border: 1px solid darkorange;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  align-items: stretch;
+}
+.prety__adder {
+  padding: 5px;
+  border: coral solid 1px;
+  display: flex;
+  flex-direction: column;
+}
+.gold {
+  color: gold;
+}
