@@ -1,12 +1,23 @@
 <script>
+import { useRoute, useRouter } from 'vue-router';
 import { useCocktaleStore } from '../store/cocktaleStore';
 export default {
   data(){
     return{
-      cocktaleStore: useCocktaleStore()
+      cocktaleStore: useCocktaleStore(),
+      route: useRoute(),
+      router: useRouter()
     }
   },
-  computed:{
+  methods:{
+    goRandom() {
+      const isRandom = this.route.path.split('/').pop()
+      if (isRandom != 'random') {
+        this.router.push('/random')
+      } else {
+        this.router.go(0)
+      }
+    }
 
   },
   props:{
@@ -36,7 +47,7 @@ export default {
           <path d="M36.3958 26.5H19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
       </button>
-      <button @click="$router.push('/random')" class="main__btn">Get random cocktail</button>
+      <button @click="goRandom()" class="main__btn">Get random cocktail</button>
       <slot></slot>
     </div>
   </div>
