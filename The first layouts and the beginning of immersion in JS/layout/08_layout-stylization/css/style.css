@@ -1,0 +1,405 @@
+/* helper tools */
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+}
+@font-face {
+    font-family: "Muller";
+    src: local("Muller") , url('../fonts/MullerBold.woff2') format('woff2'),
+    url('../fonts/MullerBold.woff') format('woff');
+    font-weight: 700;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Muller";
+    src: local("Muller") , url('../fonts/MullerLight.woff2') format('woff2'),
+    url('../fonts/MullerLight.woff') format('woff');
+    font-weight: 300;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Muller";
+    src: local("Muller") , url('../fonts/MullerMedium.woff2') format('woff2'),
+    url('../fonts/MullerMedium.woff') format('woff');
+    font-weight: 500;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Muller";
+    src: local("Muller") , url('../fonts/MullerRegular.woff2') format('woff2'),
+    url('../fonts/MullerRegular.woff') format('woff');
+    font-weight: 400;
+    font-display: swap;
+}
+body {
+    min-width: 1200px;
+    font-family: 'Muller', sans-serif;
+    background-color:  #E5E5E5;
+    font-weight: 400;
+}
+
+.list-reset {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.btn-reset {
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.flex {
+    display: flex;
+}
+.hide-this {
+    display: none;
+}
+/* global */
+.container {
+    width: 1170px;
+    margin: 0 auto;
+}
+.title {
+    margin: 0;
+    padding-left: 30px;
+    margin-bottom: 20px;
+    font-size: 40px;
+    line-height: 40px;
+    color: #333333;
+    font-weight: 400;
+}
+.text {
+    margin: 0;
+}
+.item-text {
+    margin: 0;
+}
+.section-inden-bottom{
+    margin-bottom: 70px;
+}
+/* header */
+.header-lagoona {
+    padding-top: 30px;
+    margin-bottom: 70px;
+}
+.header-lagoona-href-section {
+    margin-bottom: 30px;
+    align-items: center;
+}
+.href-lagoona-logo{
+    font-size: 0;
+    margin-right: 40px;
+}
+.personal-area-lagoona {
+    font-size: 16px;
+    line-height: 16px;
+    color: #CC9933;
+    padding-left: 28px;
+    background-image: url(../images/header-row-right.svg);
+    background-position: center left;
+    background-size: 21px 12px;
+    background-repeat: no-repeat;
+}
+.header-lagoona-nav{
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 45px;
+    background: #FFFFFF;
+    border-radius: 15px;
+}
+.lagoona-section-list-item{
+    font-size: 16px;
+    line-height: 16px;
+    color: #666666;
+}
+.lagoona-section-list-item:not(:last-child) {
+    margin-right: 45px;
+}
+.nav-header-lagoona {
+
+}
+.nav-lagoona-header-buttons {
+    
+}
+.lagoona-btn {
+    font-size: 16px;
+    line-height: 16px;
+    color: #CC9933;
+    padding: 13px 20px;
+    border: #CC9933 1px solid;
+    border-radius: 10px;
+}
+.btn-nav{
+    margin-right: 40px;
+}
+.lagoona-addres-href{
+    margin-right: auto;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 20px;
+    color: #666666;
+}
+/* special deal section */
+.special-deal-list-item{
+    width: 573px;
+    padding: 45px 108px 40px 45px;
+    /* border: 0px solid black; */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 15px;
+    overflow: hidden;
+    background-color: #000000;
+}
+.special-deal-list-item:not(:last-child){
+    margin-bottom: 24px;
+}
+.list-item-min {
+    margin-right: 24px;
+}
+.li-mi-1 {
+    background-image: url(../images/litle-card-1.jpg);
+}
+.li-mi-2 {
+    background-image: url(../images/litle-card-2.jpg);
+}
+.deal-list-item-title{
+    margin: 0;
+    font-size: 40px;
+    line-height: 40px;
+    color: #FFFFFF;
+}
+
+.list-item-max {
+    padding-top: 212px;
+    background-image: url(../images/big-card.jpg);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+}
+.list-item-max .item-title {
+    font-size: 60px;
+    line-height: 60px;
+}
+.list-item-max .price {
+    font-size: 30px;
+    line-height: 30px;
+}
+.item-link {
+    font-size: 16px;
+    line-height: 16px;
+    color: #F0BF5F;
+    background-image: url(../images/sufix.svg);
+    background-position: right center;
+    background-repeat: no-repeat;
+    padding-right:16px;
+    align-self: flex-start;
+}
+.item-title {
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+.list-item-title {
+    margin: 0;
+}
+.price {
+    display: block;
+    margin-bottom: 47px;
+    font-size: 20px;
+    line-height: 20px;
+    color: #FFFFFF;
+    opacity: 0.8;
+}
+/* about us */
+.text {
+    font-size: 16px;
+    line-height: 200%;
+}
+.text-about-us {
+    width: 888px;
+    
+}
+/* services */
+.services-list{
+    flex-wrap: wrap;
+}
+.services-list-item {
+    width: 573px;
+    padding-top: 191px;
+    margin-bottom: 24px;
+    border-radius: 15px;
+    background-color: #fff;
+    padding-left:45px ;
+    padding-bottom: 35px;
+    padding-right: 126px;
+    background-size: contain;
+    background-position: center top;
+    background-repeat: no-repeat;
+}
+.sli-1{
+    background-image: url(../images/services-card-1.jpg);
+}
+.sli-2{
+    background-image: url(../images/services-card-2.jpg);
+}
+.sli-3{
+    background-image: url(../images/services-card-3.jpg);
+}
+.sli-4{
+    background-image: url(../images/services-card-4.jpg);
+}
+.services-list-item .item-link {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 200%;
+    color: #CC9933;
+}
+.services-list-item:not(:nth-child(2n)){
+    margin-right: 24px;
+}
+.services-list-item:nth-last-child(-n+2) {
+    margin-bottom: 0;
+}
+/* benefits */
+.benefits-list {
+    flex-wrap: wrap;
+}
+
+.benefits-list-item {
+    width: 276px;
+    padding-top: 116px;
+    padding-left: 45px;
+    padding-right: 42px;
+    padding-bottom: 32px;
+    margin-bottom: 22px;
+    background-position: 40px 45px;
+    background-repeat: no-repeat;
+    background-color: white;
+    border-radius: 15px;
+}
+.bli-1 {
+    background-image: url(../images/benefits-1.svg);
+}
+.bli-2 {
+    background-image: url(../images/benefits-2.svg);
+}
+.bli-3 {
+    background-image: url(../images/benefits-3.svg);
+}
+.bli-4 {
+    background-image: url(../images/benefits-4.svg);
+}
+.bli-5 {
+    background-image: url(../images/benefits-5.svg);
+}
+.bli-6 {
+    background-image: url(../images/benefits-6.svg);
+}
+.bli-7 {
+    background-image: url(../images/benefits-7.svg);
+}
+.bli-8 {
+    background-image: url(../images/benefits-8.svg);
+}
+.benefits-list-item:not(:nth-child(4n)){
+    margin-right:22px ;
+}
+.benefits-list-item:nth-last-child(-n+4)    {
+    margin-bottom: 0;
+}
+/* accomadation */
+.accommadation-list{
+    flex-wrap: wrap;
+}
+.accommadation-list-item {
+    width: 374px;
+    margin-bottom: 24px;
+    /* outline: 1px solid black; */
+    border-radius: 15px;
+    overflow: hidden;
+    background-color: white;
+}
+.accommadation-list-item:not(:nth-child(3n)){
+    margin-right: 24px;
+}
+.accommadation-list-item:nth-last-child(-n+3){
+    margin-bottom: 0;
+}
+.accommadation-item-rating {
+    display: inline-block;
+}
+.acammoddation-card-body {
+    padding: 0 45px;
+    padding: 32px;
+    padding-bottom: 45px;
+}
+.look-at-all-variants {
+    padding: 374px 0px 27px 54px ;
+}
+.span-from {
+    font-size: 16px;
+    line-height: 16px;
+    color: #999999;
+    margin-right:4px ;
+}
+.item-rating-block .span-price{
+    margin-right: 4px;
+}
+.span-night {
+    font-size: 16px;
+    line-height: 16px;
+    color: #000000;
+    margin-right: 52px;
+}
+.item-rating-block .span-price {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 20px;
+    color: #000000;
+}
+.place-name {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 16px;
+}
+.place-country-city {
+    font-size: 16px;
+    line-height: 16px;
+    color: #999999;
+}
+.ali {
+    background-image: url(../images/accommadition-9.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    padding-bottom: 27px;
+}
+.ali .item-link {
+    background-image: url(../images/suffix-white.svg);
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 200%;
+    color: #FFFFFF;
+    align-self: flex-end;
+}

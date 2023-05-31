@@ -1,0 +1,17 @@
+:root {
+    --regular:400;
+    --bold:700;
+    --semibold:600;
+    --extrabold:800;
+    --medium:500;
+    --default-fs:16px;
+    --default-lh:32px;
+
+    --default-fc:#333333;
+
+    --container-max-width:1920px;
+    --container-padding:75px;
+    --focus:#FF9900;
+    --hover:#FF9900;
+    --active:#E1670E;
+}
