@@ -52,14 +52,14 @@ export default {
 
 <template>
   <section class="main">
-    <div class="main-input-wrapper"> <!-- здесь я при помощи v-modal оброщаюсь к data из блока script-->
+    <form  @submit.stop.prevent="push()" class="main-input-wrapper"> <!-- здесь я при помощи v-modal оброщаюсь к data из блока script-->
       <input v-model="name" type="text" placeholder="name">
       <input v-model="lastName" type="text" placeholder="last name">
       <input v-model="experience" type="text" placeholder="experience">
       <input v-model="age" type="text" placeholder="age">
       <input v-model="addres" type="text" placeholder="addres">
-      <button @click="push()">send</button> <!-- эта кнопка отправляет все данные в employees и стирает текст со всех полей -->
-    </div>
+      <button type="submit">send</button> <!-- эта кнопка отправляет все данные в employees и стирает текст со всех полей -->
+    </form>
     <ul class="employees-list">
       <li class="employees-item" v-for="(employe , id) of employees" :key="id">
         <employe :data="employe"></employe><!-- здесь я через проп data отправляю компаненту объект -->

@@ -1,16 +1,10 @@
 export default [
   {
-    name: 'name',
-    lastName: 'lastName',
-    experience: 'experience',
-    age: "age",
-    addres: 'addres',
+    name: 'Ruslan',
+    lastName: 'Kashefrazov',
+    experience: '0',
+    age: "17",
+    addres: 'My addres',
   },
-  {
-    name: 'name2',
-    lastName: 'lastName2',
-    experience: 'experience2',
-    age: "age2",
-    addres: 'addres2',
-  },
+
 ]
