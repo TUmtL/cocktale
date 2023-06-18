@@ -16,8 +16,12 @@ export default {
   ],
   data(){
     return{
-      store:store(),
       onBeloved:0,
+    }
+  },
+  computed:{
+    store(){
+      return store()
     }
   },
   watch:{
@@ -36,7 +40,6 @@ export default {
       } else {
         this.onBeloved = 0
       }
-
     }
   }
 }

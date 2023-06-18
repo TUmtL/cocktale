@@ -3,8 +3,6 @@ export default {
   data() {
     return {
       beer: '',
-
-
     }
   },
   methods: {

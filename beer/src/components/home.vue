@@ -1,10 +1,11 @@
 <script>
 import store from '../store';
 import beerCard from './beerCard.vue';
+import beloved from './belovedMenu.vue'
 export default {
-  data() {
-    return {
-      store: store()
+  computed: {
+    store() {
+      return store()
     }
   },
   created() {
@@ -17,6 +18,7 @@ export default {
         this.store.getBeer()
       } else if (this.store.page = this.store.pages) {
         this.store.page = 1
+        this.store.getBeer()
       }
     },
     pageDOWN() {
@@ -25,11 +27,12 @@ export default {
         this.store.getBeer()
       } else if (this.store.page = 1) {
         this.store.page = 22
+        this.store.getBeer()
       }
     }
   },
-  components:{
-    beerCard
+  components: {
+    beerCard, beloved
   }
 
 }
@@ -51,6 +54,7 @@ export default {
 </template>
 
 <style>
+
 .beer__list {
   display: flex;
   flex-wrap: wrap;

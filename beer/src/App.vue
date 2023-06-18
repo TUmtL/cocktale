@@ -1,11 +1,15 @@
 <script >
 import store from './store';
+import beloved from './components/belovedMenu.vue'
 export default {
-  data(){
-    return{
-      store:store()
-    }
+computed:{
+  store(){
+    return store()
   }
+},
+components:{
+  beloved
+}
 }
 </script>
 
@@ -24,6 +28,7 @@ export default {
             <li class="header__nav__list__item"><router-link to="/">home</router-link></li>
             <li class="header__nav__list__item"><router-link to="/beer/random">random</router-link></li>
             <li class="header__nav__list__item"><router-link to="/about">WHATUKNOWABOUTROLINGDOWN</router-link></li>
+            <li class="header__nav__list__item"><beloved class="beloved"></beloved></li>
           </ul>
         </nav>
       </div>
@@ -35,7 +40,7 @@ export default {
 </template>
 
 <style scoped>
-.header {}
+
 
 .logo {
   height: 50px;
