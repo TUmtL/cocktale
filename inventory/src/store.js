@@ -7,7 +7,9 @@ export default defineStore('inventoryStore', {
         { name: "tapaz", count: 2 },
         { name: "amethist", count: 5 },
         {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
-      ]
+      ],
+      curentItem:'',
+      modalOpen:0
     }
   }
 })

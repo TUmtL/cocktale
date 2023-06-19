@@ -17,7 +17,6 @@ import dragg from 'vuedraggable'
 <style lang="scss" scoped>
 .inventory__wrapper {
   display: flex;
-
   left {
     flex-basis: 236px;
 

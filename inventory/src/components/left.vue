@@ -16,7 +16,7 @@ import { ref } from 'vue'
 import store from '../store.js';
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .left__wrapper {
   padding: 18px 14px;
   background: #262626;
