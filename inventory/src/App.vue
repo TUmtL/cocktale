@@ -1,30 +1,31 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import inventory from './components/inventory.vue';
+import store from './store.js';
+import left from './components/left.vue'
+import dragg from 'vuedraggable'
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+  <section class="inventory">
+    <div class="inventory__wrapper container">
+      <left />
+      <inventory />
+    </div>
+  </section>
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+<style lang="scss" scoped>
+.inventory__wrapper {
+  display: flex;
+
+  left {
+    flex-basis: 236px;
+
+  }
+
+  right {
+    flex-basis: 525px;
+  }
+
 }
 </style>
