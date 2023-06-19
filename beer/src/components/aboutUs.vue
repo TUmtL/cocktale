@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="container">
     <p>hello ! how are u , i am in underwater ,please help me :(</p>
   </section>
 </template>
