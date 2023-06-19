@@ -15,7 +15,7 @@
       <input v-model="iDELITING" placeholder="Введите количество" class="delete__input" type="number">
       <div class="btn__wrapper">
         <button @click="iDeleteThis = 0" class="cancel">Отмена</button>
-        <button class="delete">Подтвердить</button>
+        <button @click="now()" class="delete">Подтвердить</button>
       </div>
     </div>
   </div>
@@ -24,8 +24,12 @@
 <script setup>
 import { ref } from 'vue'
 import store from '../store.js';
+
 const iDeleteThis = ref(0)
 const iDELITING = ref('')
+const now = () => {
+  store().curentItem.count -= iDELITING.value
+}
 </script>
 
 <style lang="scss" scoped>

@@ -2,39 +2,48 @@
 import { ref } from 'vue'
 import store from '../store.js';
 import modal from './modal.vue';
+import draggable from 'vuedraggable';
 const setItem = (item) => {
+  if (item.name === 'none') {
+    item.name === 'none'
+  } else {
+    if (store().modalOpen === 0) {
+      store().curentItem = item
+      store().modalOpen = 1
+    } else {
+      store().curentItem = ''
+      store().modalOpen = 0
+    }
+  }
 
-  if (store().modalOpen === 0 ) {
-    store().curentItem = item
-    store().modalOpen = 1
-  } else if (store().modalOpen === 1) {
-    store().curentItem = ''
-    store().modalOpen = 0
-  } 
 }
 </script>
 
 <template>
   <div class="inventory__wrapper">
-    <ul class="inventory__list">
-      <li @click="setItem(item)" class="inventory__list__item" v-for="(item, itemId) of store().inventoryCells"
-        :key="itemId">
-        <img v-if="item.name" style="width: 54px;" :src="`./src/assets/${item.name}.png`" alt="">
-        <div v-if="item.count" class="list__item__counter">{{ item.count }}</div>
-      </li>
-    </ul>
+    <draggable class="inventory__list" v-model="store().inventoryCells" item-key="id" tag="ul" group="item"
+      @start="drag = true" @end="drag = false">
+      <template #item="{ element: item }">
+        <li @click="setItem(item)" class="inventory__list__item">
+          <img v-if="item.name" style="width: 54px;" :src="`./src/assets/${item.name}.png`" alt="">
+          <div v-if="item.count" class="list__item__counter">{{ item.count }}</div>
+        </li>
+      </template>
+    </draggable>
+
     <modal></modal>
   </div>
 </template>
 
 <style lang="scss" scoped>
-
 .inventory__wrapper {
   background: #262626;
   border-radius: 12px;
   border: 1px solid #4D4D4D;
   overflow: hidden;
+  flex-direction: column;
   flex-basis: 525px;
+  flex-grow: 0;
   overflow: hidden;
   position: relative;
 }

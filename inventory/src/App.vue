@@ -11,6 +11,7 @@ import dragg from 'vuedraggable'
       <left />
       <inventory />
     </div>
+    
   </section>
 </template>
 
