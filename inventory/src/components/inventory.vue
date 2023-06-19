@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref ,watch } from 'vue'
 import store from '../store.js';
 import modal from './modal.vue';
 import draggable from 'vuedraggable';
@@ -15,7 +15,13 @@ const setItem = (item) => {
       store().modalOpen = 0
     }
   }
+}
 
+watch(() => store().inventoryCells , (val)=>{
+  localStorage.setItem('inventory' , JSON.stringify(store().inventoryCells))
+}, {deep:true})
+if(JSON.parse(localStorage.getItem('inventory')) != null) {
+  store().inventoryCells = JSON.parse(localStorage.getItem('inventory'))
 }
 </script>
 
@@ -25,8 +31,8 @@ const setItem = (item) => {
       @start="drag = true" @end="drag = false">
       <template #item="{ element: item }">
         <li @click="setItem(item)" class="inventory__list__item">
-          <img v-if="item.name" style="width: 54px;" :src="`./src/assets/${item.name}.png`" alt="">
-          <div v-if="item.count" class="list__item__counter">{{ item.count }}</div>
+          <img v-if="item.name != 'none'" style="width: 54px;" :src="`./src/assets/${item.name}.png`" alt="">
+          <div v-if="item.count >= 1 " class="list__item__counter">{{ item.count}}</div>
         </li>
       </template>
     </draggable>
