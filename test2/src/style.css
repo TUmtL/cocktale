@@ -1,0 +1,15 @@
+img , svg {
+  width: 100%;
+}
+* ,
+ *::after ,
+ *::before,
+ body,
+ p,h1,h2,h3,h4,h5,h6,span,ul,ol,li,a
+ {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+}
