@@ -28,11 +28,13 @@ export default {
 
 <style scoped>
 .curent__page__btn {
-  color: red;
+  background: white !important;
+  border-bottom: none !important;
 }
 
 .page__btn {
-  
+  border: 1px solid black;
+  background: rgb(139, 139, 139);
 }
 </style>
  
