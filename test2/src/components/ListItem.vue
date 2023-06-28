@@ -10,7 +10,8 @@
     <button @click="removeSelf()">remove</button>
 
     <div v-if="redacter === 0">
-      <p style="color: red ;"><span>{{ item?.user }}</span></p>
+      <router-link :to="`/photo/${item?.id}`" style="color: rgba(255, 102, 0, 0.89) ;" v-if="$route.path === '/photo'">{{ item?.user }}</router-link>
+      <p v-else style="color: red ;"><span>{{ item?.user }}</span></p>
       <p>{{ item?.title }}</p>
       <p> {{ item?.body }} </p>
     </div>
