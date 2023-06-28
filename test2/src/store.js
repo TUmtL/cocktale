@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-export default defineStore('testStore' , {
+export default defineStore('postStore' , {
   state(){
     return{
       listItems:[],
@@ -18,7 +18,7 @@ export default defineStore('testStore' , {
       for(let i = 0 ; i < this.listItems.length  ; i++){
         let iu = Math.floor(i / 10)
         if(this.listItems[i].userId === this.users[iu]?.id) {
-          this.listItems[i].user = this.users[iu]
+          this.listItems[i].user =  this.users[iu].name  
         }
       }
     },

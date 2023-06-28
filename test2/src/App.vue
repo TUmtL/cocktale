@@ -11,7 +11,7 @@ export default {
 
 <template>
   <div>
-    <header>
+    <header class="container">
       <nav class="header__nav">
         <router-link :class="{ 'page__btn': true, 'curent__page__btn': page === '/' }" to="/">блоги</router-link>
         <router-link :class="{ 'page__btn': true, 'curent__page__btn': page === '/photo' }" to="/photo">фото</router-link>

@@ -8,7 +8,7 @@
     <button @click="removeSelf()">remove</button>
 
     <div v-if="redacter === 0">
-      <p style="color: red;"><span v-if="nameRED === ''">{{ item?.user?.name }}</span><span v-else>{{ nameBack }}</span></p>
+      <p style="color: red;"><span >{{ item?.user }}</span></p>
       <p>{{ item?.title }}</p>
       <p> {{ item?.body }} </p>
     </div>
@@ -61,7 +61,7 @@ export default {
     async set() {
       this.item.userId = this.nameRED
       if (this.nameRED != '') {
-        this.nameBack = this.store.users[this.nameRED - 1].name
+        this.item.user = this.store.users[this.nameRED - 1].name
         const patch = await fetch('https://jsonplaceholder.typicode.com/posts/' + this.item.id, {
           method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },
