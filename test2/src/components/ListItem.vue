@@ -2,19 +2,20 @@
   <div>
     <p :class="{ red: item?.beloved === true }">{{ item?.id }}</p>
     <input type="checkbox" :value="item" v-model="store.selected">
+
     <button @click="setLoved()">on beloved</button>
-    <button @click="comentTake()">comment</button>
+    <button v-if="$route.path != '/photo'" @click="comentTake()">comment</button>
     <button @click="redactSet()">redact</button>
     <button @click="removeSelf()">remove</button>
 
     <div v-if="redacter === 0">
-      <p style="color: red;"><span >{{ item?.user }}</span></p>
+      <p style="color: red ;"><span>{{ item?.user }}</span></p>
       <p>{{ item?.title }}</p>
       <p> {{ item?.body }} </p>
     </div>
     <div v-else>
       <input placeholder="title" v-model="titleRed" type="text">
-      <input placeholder="body" v-model="bodyRed" type="text">
+      <input v-if="$route.path != '/photo'" placeholder="body" v-model="bodyRed" type="text">
       <select v-model="nameRED">
         <option v-for="user of this.store.users" :key="user.id" :value="user.id">{{ user.name }}</option>
       </select>
@@ -33,10 +34,10 @@
 </template>
 
 <script>
-import store from '../store';
+
 export default {
   props: [
-    'item'
+    'item' , 'store'
   ],
   data() {
     return {
@@ -114,15 +115,6 @@ export default {
       } else this.comments = ''
     },
   },
-  computed: {
-    store() {
-      return store()
-    },
-  },
-  created() {
-
-  }
-
 }
 </script>
 

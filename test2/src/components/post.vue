@@ -9,7 +9,7 @@
     <button @click="sortBeloved()">sortBeloved</button>
     <ul v-if="belovedInit === 0">
       <li v-for="(item, itemIndex) of storeItem" :key="itemIndex">
-        <ListItem v-if="item != null" :item="item" />
+        <ListItem v-if="item != null" :item="item" :store="store" />
       </li>
     </ul>
     <ul v-else>
@@ -28,7 +28,7 @@
       <button type="submit">ОТПРАВИТЬ</button>
     </form>
     <div class="selected__menu" v-if="store.selected != 0">
-      <button @click="selectBel()">Beloved</button>
+      <button @click="selectBel()">Beloved</button> <br>
       <button @click="selectDel()">Del</button>
     </div>
   </div>
@@ -36,7 +36,7 @@
 
 <script>
 import ListItem from './ListItem.vue'
-import store from '../store'
+import store from '../storePost'
 export default {
   components: {
     ListItem
@@ -124,7 +124,10 @@ export default {
     }
   },
   async created() {
+    if(localStorage.getItem('post') != null) this.store.listItems = JSON.parse(localStorage.getItem('post'))
+    else {
     await this.store.listTake()
+    }
     await setTimeout(() => this.store.userAdvance(), 100)
   },
   computed: {
@@ -138,6 +141,14 @@ export default {
       }
       return result
     },
+  },
+  watch:{
+    storeItem:{
+      handler(val){
+        localStorage.setItem('post' , JSON.stringify(this.store.listItems))
+      },
+      deep:true
+    }
   }
 }
 </script>

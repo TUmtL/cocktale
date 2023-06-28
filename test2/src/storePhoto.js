@@ -1,5 +1,5 @@
-import { defineStore } from "pinia";
-export default defineStore('postStore' , {
+import {defineStore} from 'pinia'
+export default defineStore('photoStore' , {
   state(){
     return{
       listItems:[],
@@ -9,7 +9,7 @@ export default defineStore('postStore' , {
   },
   actions:{
     async listTake(){
-      const raw = await fetch('https://jsonplaceholder.typicode.com/posts')
+      const raw = await fetch('https://jsonplaceholder.typicode.com/albums')
       const coocked = await raw.json()
       this.listItems = coocked
     },
