@@ -17,7 +17,7 @@
         <ListItem v-if="item != null" :item="item" />
       </li>
     </ul>
-    <div class="selected__menu" v-if="store.selected != 0">
+    <div class="selected__menu" v-if="store.selected.length != 0">
       <button @click="selectBel()">Beloved</button> <br>
       <button @click="selectDel()">Del</button>
     </div>

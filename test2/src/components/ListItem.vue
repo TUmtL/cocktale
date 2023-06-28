@@ -1,7 +1,8 @@
 <template>
   <div>
     <p :class="{ red: item?.beloved === true }">{{ item?.id }}</p>
-    <input type="checkbox" :value="item" v-model="store.selected">
+    <input v-if="$route.path === '/'" type="checkbox" :value="item" v-model="storePost.selected">
+    <input v-if="$route.path === '/photo'" type="checkbox" :value="item" v-model="storePhoto.selected">
 
     <button @click="setLoved()">on beloved</button>
     <button v-if="$route.path != '/photo'" @click="comentTake()">comment</button>
@@ -34,7 +35,8 @@
 </template>
 
 <script>
-
+import storePhoto from '../storePhoto'
+import storePost from '../storePost'
 export default {
   props: [
     'item' , 'store'
@@ -50,8 +52,11 @@ export default {
     }
   },
   methods: {
-    removeSelf(){
+    async removeSelf(){
       this.store.listItems = this.store.listItems.filter(item => item.id != this.item.id)
+      if($route.path === '/') {
+
+      }
     },
     cancel() {
       this.redacter = 0
@@ -115,6 +120,14 @@ export default {
       } else this.comments = ''
     },
   },
+  computed:{
+    storePhoto(){
+      return storePhoto()
+    },
+    storePost(){
+      return storePost()
+    }
+  }
 }
 </script>
 
