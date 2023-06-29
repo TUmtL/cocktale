@@ -7,6 +7,10 @@
     <button @click="sortId()">sortID</button>
     <button @click="sortName()">sortName</button>
     <button @click="sortBeloved()">sortBeloved</button>
+    <div class="list__slider" v-if="curNum <= 100">
+      <button @click="pagePlus()">++</button>
+      <button @click="pageMinus()">--</button>
+    </div>
     <ul v-if="belovedInit === 0">
       <li v-for="(item, itemIndex) of storeItem" :key="itemIndex">
         <ListItem v-if="item != null" :item="item" :store="store" />
@@ -18,7 +22,7 @@
       </li>
     </ul>
     <form class="add__post" @submit.prevent="addPost()">
-      <select v-model="userId">
+      <select v-if="$route.path != '/task'" v-model="userId">
         <option v-for="user of store.users" :key="user.id" :value="user.id">
           {{ user.name }}
         </option>
@@ -49,24 +53,39 @@ export default {
       curNum: 10,
       idInit: 0,
       nameInit: 0,
-      belovedInit: 0
+      belovedInit: 0,
+      pages: 0
     }
   },
   methods: {
-    selectBel(){
+    pageMinus(){
+      if(this.pages > 0){
+        this.pages -= this.curNum
+      } else {
+        this.pages = 0
+      }
+    },
+    pagePlus(){
+      if(this.pages < this.store.listItems.length - 10){
+        this.pages += this.curNum
+      } else{
+        this.pages = this.store.listItems.length - 10
+      }
+    },
+    selectBel() {
       // this.store.beloved.push(this.store.selected)
-      for(let item of this.store.selected){
-        if( item.beloved === false || item.beloved === undefined) item.beloved = true
+      for (let item of this.store.selected) {
+        if (item.beloved === false || item.beloved === undefined) item.beloved = true
         else item.beloved = false
       }
       this.store.selected = []
-      
+
     },
-    async selectDel(){
-      for(let item1 of this.store.selected){
+    async selectDel() {
+      for (let item1 of this.store.selected) {
         this.store.listItems = this.store.listItems.filter(item => item.id != item1.id)
-        fetch('https://jsonplaceholder.typicode.com/posts/' + item1.id , {
-          method:'DELETE'
+        fetch('https://jsonplaceholder.typicode.com/posts/' + item1.id, {
+          method: 'DELETE'
         })
       }
       this.store.selected = []
@@ -124,9 +143,9 @@ export default {
     }
   },
   async created() {
-    if(localStorage.getItem('post') != null) this.store.listItems = JSON.parse(localStorage.getItem('post'))
+    if (localStorage.getItem('post') != null) this.store.listItems = JSON.parse(localStorage.getItem('post'))
     else {
-    await this.store.listTake()
+      await this.store.listTake()
     }
     await setTimeout(() => this.store.userAdvance(), 100)
   },
@@ -136,18 +155,18 @@ export default {
     },
     storeItem() {
       const result = []
-      for (let i = 0; i < this.curNum; i++) {
+      for (let i = this.pages; i < this.curNum + this.pages; i++) {
         result.push(this.store.listItems[i])
       }
       return result
     },
   },
-  watch:{
-    storeItem:{
-      handler(val){
-        localStorage.setItem('post' , JSON.stringify(this.store.listItems))
+  watch: {
+    storeItem: {
+      handler(val) {
+        localStorage.setItem('post', JSON.stringify(this.store.listItems))
       },
-      deep:true
+      deep: true
     }
   }
 }
@@ -159,9 +178,17 @@ export default {
   right: 0;
   bottom: 0;
 }
-.selected__menu{
+
+.selected__menu {
   position: fixed;
-  left:0;
-  top:40%;
+  left: 0;
+  top: 40%;
+}
+.list__slider {
+  position: fixed;
+  right: 5px;
+  top: 45%;
+  display: flex;
+  flex-direction: column;
 }
 </style>

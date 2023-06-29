@@ -3,22 +3,25 @@
     <p :class="{ red: item?.beloved === true }">{{ item?.id }}</p>
     <input v-if="$route.path === '/'" type="checkbox" :value="item" v-model="storePost.selected">
     <input v-if="$route.path === '/photo'" type="checkbox" :value="item" v-model="storePhoto.selected">
-
-    <button @click="setLoved()">on beloved</button>
-    <button v-if="$route.path != '/photo'" @click="comentTake()">comment</button>
+    <input v-if="$route.path === '/task'" type="checkbox" :value="item" v-model="storeTask.selected">
+    <button v-if="$route.path != '/task'" @click="setLoved()">on beloved</button>
+    <button v-if="$route.path === '/task'" @click="storeTask.completer(item)"><span v-if="item.completed === true">not
+        complited</span> <span v-else-if="item.completed === false">complited</span></button>
+    <button v-if="$route.path != '/photo' && $route.path != '/task'" @click="comentTake()">comment</button>
     <button @click="redactSet()">redact</button>
     <button @click="removeSelf()">remove</button>
 
     <div v-if="redacter === 0">
-      <router-link :to="`/photo/${item?.id}`" style="color: rgba(255, 102, 0, 0.89) ;" v-if="$route.path === '/photo'">{{ item?.user }}</router-link>
+      <router-link :to="`/photo/${item?.id}`" style="color: rgba(255, 102, 0, 0.89) ;" v-if="$route.path === '/photo'">{{
+        item?.user }}</router-link>
       <p v-else style="color: red ;"><span>{{ item?.user }}</span></p>
-      <p>{{ item?.title }}</p>
+      <p :class="{'completed': item?.completed === true}">{{ item?.title }}</p>
       <p> {{ item?.body }} </p>
     </div>
     <div v-else>
       <input placeholder="title" v-model="titleRed" type="text">
-      <input v-if="$route.path != '/photo'" placeholder="body" v-model="bodyRed" type="text">
-      <select v-model="nameRED">
+      <input v-if="$route.path != '/photo' && $route.path != '/task'" placeholder="body" v-model="bodyRed" type="text">
+      <select v-if="$route.path != '/task'" v-model="nameRED">
         <option v-for="user of this.store.users" :key="user.id" :value="user.id">{{ user.name }}</option>
       </select>
       <button @click="set()">redact</button>
@@ -38,9 +41,10 @@
 <script>
 import storePhoto from '../storePhoto'
 import storePost from '../storePost'
+import storeTask from '../storeTask'
 export default {
   props: [
-    'item' , 'store'
+    'item', 'store'
   ],
   data() {
     return {
@@ -53,9 +57,9 @@ export default {
     }
   },
   methods: {
-    async removeSelf(){
+    async removeSelf() {
       this.store.listItems = this.store.listItems.filter(item => item.id != this.item.id)
-      if($route.path === '/') {
+      if ($route.path === '/') {
 
       }
     },
@@ -97,6 +101,7 @@ export default {
           })
         })
       }
+      this.redacter = 0
     },
     redactSet() {
       if (this.redacter === 0) {
@@ -108,8 +113,7 @@ export default {
     setLoved() {
       if (this.item.beloved === undefined || this.item.beloved === false) {
         this.item.beloved = true
-      }
-      else {
+      } else {
         this.item.beloved = false
       }
     },
@@ -121,12 +125,15 @@ export default {
       } else this.comments = ''
     },
   },
-  computed:{
-    storePhoto(){
+  computed: {
+    storePhoto() {
       return storePhoto()
     },
-    storePost(){
+    storePost() {
       return storePost()
+    },
+    storeTask() {
+      return storeTask()
     }
   }
 }
@@ -135,5 +142,9 @@ export default {
 <style>
 .red {
   color: red
+}
+.completed{
+  color: green;
+  text-decoration: line-through;
 }
 </style>

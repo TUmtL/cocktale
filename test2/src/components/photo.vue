@@ -7,6 +7,10 @@
     <button @click="sortId()">sortID</button>
     <button @click="sortName()">sortName</button>
     <button @click="sortBeloved()">sortBeloved</button>
+    <div class="list__slider" v-if="curNum <= 100">
+      <button @click="pagePlus()">++</button>
+      <button @click="pageMinus()">--</button>
+    </div>
     <ul v-if="belovedInit === 0">
       <li v-for="(item, itemIndex) of storeItem" :key="itemIndex">
         <ListItem v-if="item != null" :item="item" :store="store" />
@@ -39,10 +43,25 @@ export default {
       curNum: 10,
       idInit: 0,
       nameInit: 0,
-      belovedInit: 0
+      belovedInit: 0,
+      pages: 0
     }
   },
   methods: {
+    pageMinus(){
+      if(this.pages > 0){
+        this.pages -= this.curNum
+      } else {
+        this.pages = 0
+      }
+    },
+    pagePlus(){
+      if(this.pages < this.store.listItems.length - 10){
+        this.pages += this.curNum
+      } else{
+        this.pages = this.store.listItems.length - 10
+      }
+    },
     selectBel(){
       for(let item of this.store.selected){
         if( item.beloved === false || item.beloved === undefined) item.beloved = true
@@ -54,7 +73,7 @@ export default {
     async selectDel(){
       for(let item1 of this.store.selected){
         this.store.listItems = this.store.listItems.filter(item => item.id != item1.id)
-        fetch('https://jsonplaceholder.typicode.com/posts/' + item1.id , {
+        fetch('https://jsonplaceholder.typicode.com/albums/' + item1.id , {
           method:'DELETE'
         })
       }
@@ -106,7 +125,7 @@ export default {
     },
     storeItem() {
       const result = []
-      for (let i = 0; i < this.curNum; i++) {
+      for (let i = this.pages; i < this.curNum + this.pages; i++) {
         result.push(this.store.listItems[i])
       }
       return result
