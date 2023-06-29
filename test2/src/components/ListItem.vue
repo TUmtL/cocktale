@@ -15,7 +15,7 @@
       <router-link :to="`/photo/${item?.id}`" style="color: rgba(255, 102, 0, 0.89) ;" v-if="$route.path === '/photo'">{{
         item?.user }}</router-link>
       <p v-else style="color: red ;"><span>{{ item?.user }}</span></p>
-      <p :class="{'completed': item?.completed === true}">{{ item?.title }}</p>
+      <p :class="{ 'completed': item?.completed === true }">{{ item?.title }}</p>
       <p> {{ item?.body }} </p>
     </div>
     <div v-else>
@@ -54,14 +54,16 @@ export default {
       nameBack: '',
       titleRed: this.item.title,
       bodyRed: this.item.body,
+      path: this.$route.path
     }
   },
   methods: {
     async removeSelf() {
       this.store.listItems = this.store.listItems.filter(item => item.id != this.item.id)
-      if ($route.path === '/') {
+      await fetch(this.ifPath + this.item.id, {
+        method: "DELETE"
+      })
 
-      }
     },
     cancel() {
       this.redacter = 0
@@ -73,7 +75,7 @@ export default {
       this.item.userId = this.nameRED
       if (this.nameRED != '') {
         this.item.user = this.store.users[this.nameRED - 1].name
-        const patch = await fetch('https://jsonplaceholder.typicode.com/posts/' + this.item.id, {
+        const patch = await fetch(this.ifPath + this.item.id, {
           method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -83,7 +85,7 @@ export default {
       }
       if (this.titleRed != '') {
         this.item.title = this.titleRed
-        const patch = await fetch('https://jsonplaceholder.typicode.com/posts/' + this.item.id, {
+        const patch = await fetch(this.ifPath + this.item.id, {
           method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -93,7 +95,7 @@ export default {
       }
       if (this.bodyRed != '') {
         this.item.body = this.bodyRed
-        const patch = await fetch('https://jsonplaceholder.typicode.com/posts/' + this.item.id, {
+        const patch = await fetch(this.ifPath + this.item.id, {
           method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -134,6 +136,15 @@ export default {
     },
     storeTask() {
       return storeTask()
+    },
+    ifPath() {
+      if (this.path === '/') {
+        return 'https://jsonplaceholder.typicode.com/posts/'
+      } else if (this.path === '/photo') {
+        return 'https://jsonplaceholder.typicode.com/albums/'
+      } else if (this.path === '/task') {
+        return 'https://jsonplaceholder.typicode.com/todos/'
+      }
     }
   }
 }
@@ -143,7 +154,8 @@ export default {
 .red {
   color: red
 }
-.completed{
+
+.completed {
   color: green;
   text-decoration: line-through;
 }
