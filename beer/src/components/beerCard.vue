@@ -1,8 +1,8 @@
 <template>
   <div>
-  <img class="beer__list__item__img" :src="beer.image_url || './src/assets/XR9hSMI-wSs.jpg'" alt="фото пивы">
-  <router-link :to="`/beer/${beer.id}`">
-    {{ beer.name }}
+  <img class="beer__list__item__img" :src="beer?.image_url || './src/assets/XR9hSMI-wSs.jpg'" alt="фото пивы">
+  <router-link :to="`/beer/${beer?.id}`">
+    {{ beer?.name }}
   </router-link>
   <button @click="addBeloved">s</button>
   </div>
@@ -24,21 +24,14 @@ export default {
       return store()
     }
   },
-  watch:{
-    onBeloved(val) {
-      if (this.onBeloved === 1) {
-        this.store.myBeLoved.push(this.beer)
-      } else if (this.onBeloved === 0) {
-        this.store.myBeLoved = this.store.myBeLoved.filter(item => item.id != this.beer.id)
-      }
-    }
-  },
   methods:{
     addBeloved(){
       if (this.onBeloved === 0) {
         this.onBeloved = 1
+        this.beer.beloved = true 
       } else {
         this.onBeloved = 0
+        this.beer.beloved = false
       }
     }
   }

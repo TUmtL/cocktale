@@ -5,7 +5,7 @@
       <button @click="activ = false">close</button>
       <ul>
         <li v-for="(item, itemId) of store.myBeLoved" :key="itemId">
-          {{item.name}} <button @click="remove(item)">Delete</button>
+          {{item.name}} <button @click="item.beloved = false">Delete</button>
         </li>
       </ul>
     </div>

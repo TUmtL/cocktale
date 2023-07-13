@@ -27,8 +27,7 @@ if(JSON.parse(localStorage.getItem('inventory')) != null) {
 
 <template>
   <div class="inventory__wrapper">
-    <draggable class="inventory__list" v-model="store().inventoryCells" item-key="id" tag="ul" group="item"
-      @start="drag = true" @end="drag = false">
+    <draggable  class="inventory__list" v-model="store().inventoryCells" item-key="id" tag="ul" group="item">
       <template #item="{ element: item }">
         <li @click="setItem(item)" class="inventory__list__item">
           <img v-if="item.name != 'none'" style="width: 54px;" :src="`./src/assets/${item.name}.png`" alt="">

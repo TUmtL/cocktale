@@ -26,7 +26,7 @@ export default {
         this.store.page--
         this.store.getBeer()
       } else if (this.store.page = 1) {
-        this.store.page = 22
+        this.store.page = this.store.pages
         this.store.getBeer()
       }
     }
@@ -42,7 +42,7 @@ export default {
   <section class="beers">
     <div class="container">
       <ul class="beer__list">
-        <li class="beer__list__item" v-for="(beer, beerId) of store.beers" :key="beerId">
+        <li class="beer__list__item" v-for="(beer, beerId) of store.beerList" :key="beerId">
           <beerCard :beer="beer" :beerId="beerId"></beerCard>
         </li>
       </ul>
