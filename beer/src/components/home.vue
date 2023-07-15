@@ -6,29 +6,35 @@ export default {
   computed: {
     store() {
       return store()
+    },
+    storeBeers(){
+      return store().beers
     }
   },
-  created() {
-    this.store.getBeer()
+  async created() {
+    if (localStorage.getItem('beers') != null) {
+      this.store.beers = JSON.parse(localStorage.getItem('beers'))
+    } else {
+      await this.store.getBeer()
+      localStorage.setItem('beers', JSON.stringify(this.store.beers))
+    }
+  },
+  watch:{
+    storeBeers:{
+      handler(){
+        localStorage.setItem('beers', JSON.stringify(this.store.beers))
+      },
+      deep:true
+    }
   },
   methods: {
     pageUP() {
-      if (this.store.page != this.store.pages) {
-        this.store.page++
-        this.store.getBeer()
-      } else if (this.store.page = this.store.pages) {
-        this.store.page = 1
-        this.store.getBeer()
-      }
+      if (this.store.page != this.store.pages) this.store.page++
+      else if (this.store.page === this.store.pages) this.store.page = 0
     },
     pageDOWN() {
-      if (this.store.page != 1) {
-        this.store.page--
-        this.store.getBeer()
-      } else if (this.store.page = 1) {
-        this.store.page = this.store.pages
-        this.store.getBeer()
-      }
+      if (this.store.page != 0) this.store.page--
+      else if (this.store.page === 0) this.store.page = this.store.pages
     }
   },
   components: {
@@ -47,14 +53,13 @@ export default {
         </li>
       </ul>
       <button @click="pageDOWN()">предыдущяя</button>
-      <button>{{ store.page }}</button>
+      <button>{{ store.page + 1 }}</button>
       <button @click="pageUP()">следущая</button>
     </div>
   </section>
 </template>
 
 <style>
-
 .beer__list {
   display: flex;
   flex-wrap: wrap;

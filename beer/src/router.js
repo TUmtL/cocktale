@@ -12,7 +12,7 @@ export default createRouter({
     {
       name:'beer',
       component:beer,
-      path:"/beer/:id"
+      path:"/beer/id/:id"
     },
     {
       name:'random',
