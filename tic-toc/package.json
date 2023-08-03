@@ -1,5 +1,5 @@
 {
-  "name": "vite-project",
+  "name": "tic-toc",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,9 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "pinia": "^2.1.4",
-    "vue": "^3.2.47",
-    "vue-router": "^4.2.2"
+    "vue": "^3.2.47"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.1.0",
